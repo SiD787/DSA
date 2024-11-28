@@ -1,0 +1,660 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs40\lang9  ALGO SET 3\par
+\b0\fs22 questIon-1\par
+Count square free and divisors\par
+\par
+\par
+#include <stdio.h>\par
+#include <math.h>\par
+\par
+int SquareFree(int num) \{\par
+    for (int i = 2; i * i <= num; i++) \{\par
+        if (num % (i * i) == 0) \{\par
+            return 0;\par
+        \}\par
+    \}\par
+    return 1;\par
+\}\par
+\par
+int countSquareFree(int N) \{\par
+    int count = 0;\par
+    \par
+    for (int i = 1; i <= sqrt(N); i++) \{\par
+        if (N % i == 0) \{\par
+\par
+            if (i != 1 && SquareFree(i)) \{\par
+                count++;\par
+            \}\par
+\par
+            if (i != N / i && SquareFree(N / i)) \{\par
+                count++;\par
+            \}\par
+        \}\par
+    \}\par
+    return count;\par
+\}\par
+\par
+int main() \{\par
+    int N;\par
+    printf("Enter the value:");\par
+    scanf("%d", &N);\par
+    \par
+    printf("%d\\n", countSquareFree(N));\par
+    \par
+    return 0;\par
+\}\par
+-----------------------------------------------------------------------------------------------\par
+question-2\par
+\par
+#include <stdio.h>\par
+#include <stdbool.h>\par
+\par
+#define MAX_VALUES 64\par
+\par
+bool contains(long long arr[], int size, long long value) \{\par
+    for (int i = 0; i < size; i++) \{\par
+        if (arr[i] == value) \{\par
+            return true;\par
+        \}\par
+    \}\par
+    return false;\par
+\}\par
+\par
+long long findDistinctOr(long long arr[], int n) \{\par
+    long long current[MAX_VALUES], next[MAX_VALUES];\par
+    int currentSize = 0, nextSize = 0;\par
+    long long result[MAX_VALUES];\par
+    int resultSize = 0;\par
+\par
+    for (int i = 0; i < n; i++) \{\par
+        nextSize = 0;\par
+        for (int j = 0; j < currentSize; j++) \{\par
+            long long orValue = current[j] | arr[i];\par
+            if (!contains(next, nextSize, orValue)) \{\par
+                next[nextSize++] = orValue;\par
+            \}\par
+        \}\par
+        if (!contains(next, nextSize, arr[i])) \{\par
+            next[nextSize++] = arr[i];\par
+        \}\par
+        for (int k = 0; k < nextSize; k++) \{\par
+            if (!contains(result, resultSize, next[k])) \{\par
+                result[resultSize++] = next[k];\par
+            \}\par
+        \}\par
+        currentSize = nextSize;\par
+        for (int k = 0; k < nextSize; k++) \{\par
+            current[k] = next[k];\par
+        \}\par
+    \}\par
+\par
+    long long finalResult = 0;\par
+    for (int i = 0; i < resultSize; i++) \{\par
+        finalResult |= result[i];\par
+    \}\par
+    return finalResult;\par
+\}\par
+\par
+int main() \{\par
+    int n;\par
+    printf("Enter the size of the array: ");\par
+    scanf("%d", &n);\par
+\par
+    long long arr[n];\par
+    printf("Enter the elements of the array: ");\par
+    for (int i = 0; i < n; i++) \{\par
+        scanf("%lld", &arr[i]);\par
+    \}\par
+\par
+    long long result = findDistinctOr(arr, n);\par
+    printf("Result: %lld\\n", result);\par
+\par
+    return 0;\par
+\}\par
+------------------------------------------------------------------------------------------\par
+Question-3\par
+\par
+#include <stdio.h>\par
+\par
+void slidingWindow(int arr[],int temp,int n)\{\par
+      int k;\par
+   printf("Enter the value of k:");\par
+   scanf("%d",&k);\par
+   for(int j=0;j<=n-1;j++)\{\par
+       temp=arr[j];\par
+       if(k+j>n)\{\par
+           break;\par
+       \}\par
+      for(int s=j;s<=k-1+j;s++)\{\par
+          if(s>=n)\{\par
+              break;\par
+          \}\par
+          if(temp<arr[s])\{\par
+              temp=arr[s];\par
+          \}\par
+      \}\par
+      printf("%d",temp);\par
+      printf("\\n");\par
+    \par
+   \}\par
+\}\par
+\par
+int main() \{\par
+    int n=10;\par
+   int temp;\par
+   int arr[n];\par
+   for(int I=0;I<=n-1;I++)\{\par
+       printf("Enter the value of array:");\par
+       scanf("%d",&arr[I]);\par
+   \}\par
+   slidingWindow(arr,temp,n);\par
+    return 0;\par
+\}\par
+------------------------------------------------------------------------------------------------\par
+question-4\par
+\par
+\par
+#include <stdio.h>\par
+#include <stdbool.h>\par
+#include <string.h>\par
+\par
+bool isValid(char* s) \{\par
+    int leftCount = 0;\par
+    int starCount = 0;\par
+    int n = strlen(s);\par
+\par
+    for (int i = 0; i < n; i++) \{\par
+        if (s[i] == '(') \{\par
+            leftCount++;\par
+        \} else if (s[i] == ')') \{\par
+            if (leftCount > 0) \{\par
+                leftCount--;\par
+            \} else if (starCount > 0) \{\par
+                starCount--;\par
+            \} else \{\par
+                return false;\par
+            \}\par
+        \} else if (s[i] == '*') \{\par
+            starCount++;\par
+        \}\par
+    \}\par
+\par
+    leftCount = 0;\par
+    starCount = 0;\par
+\par
+    for (int i = n - 1; i >= 0; i--) \{\par
+        if (s[i] == ')') \{\par
+            leftCount++;\par
+        \} else if (s[i] == '(') \{\par
+            if (leftCount > 0) \{\par
+                leftCount--;\par
+            \} else if (starCount > 0) \{\par
+                starCount--;\par
+            \} else \{\par
+                return false;\par
+            \}\par
+        \} else if (s[i] == '*') \{\par
+            starCount++;\par
+        \}\par
+    \}\par
+\par
+    return true;\par
+\}\par
+\par
+int main() \{\par
+    char s[10005];\par
+    printf("Enter the string: ");\par
+    scanf("%s", s);\par
+\par
+    if (isValid(s)) \{\par
+        printf("true\\n");\par
+    \} else \{\par
+        printf("false\\n");\par
+    \}\par
+\par
+    return 0;\par
+\}\par
+------------------------------------------------------------------------------------------------------\par
+question-5\par
+\par
+\par
+#include <stdio.h>\par
+#include <stdbool.h>\par
+#include <string.h>\par
+\par
+#define MAX 10005\par
+\par
+// Stack implementation\par
+char stack[MAX];\par
+int top = -1;\par
+\par
+void push(char c) \{\par
+    if (top < MAX - 1) \{\par
+        stack[++top] = c;\par
+    \}\par
+\}\par
+\par
+char pop() \{\par
+    if (top >= 0) \{\par
+        return stack[top--];\par
+    \}\par
+    return '\\0';\par
+\}\par
+\par
+char peek() \{\par
+    if (top >= 0) \{\par
+        return stack[top];\par
+    \}\par
+    return '\\0';\par
+\}\par
+\par
+bool isEmpty() \{\par
+    return top == -1;\par
+\}\par
+\par
+bool isValid(char* s) \{\par
+    int n = strlen(s);\par
+    for (int i = 0; i < n; i++) \{\par
+        if (s[i] == '(' || s[i] == '[' || s[i] == '\{') \{\par
+            push(s[i]);\par
+        \} else \{\par
+            char topChar = peek();\par
+            if ((s[i] == ')' && topChar == '(') ||\par
+                (s[i] == ']' && topChar == '[') ||\par
+                (s[i] == '\}' && topChar == '\{')) \{\par
+                pop();\par
+            \} else \{\par
+                return false;\par
+            \}\par
+        \}\par
+    \}\par
+    return isEmpty();\par
+\}\par
+\par
+int main() \{\par
+    char s[MAX];\par
+    printf("Enter the string: ");\par
+    scanf("%s", s);\par
+\par
+    if (isValid(s)) \{\par
+        printf("true\\n");\par
+    \} else \{\par
+        printf("false\\n");\par
+    \}\par
+\par
+    return 0;\par
+\}\par
+------------------------------------------------------------------------------------------------------------\par
+question-6\par
+\par
+\par
+\par
+#include <stdio.h>\par
+#include <string.h>\par
+#include <stdbool.h>\par
+\par
+bool isPalindrome(char* s, int len) \{\par
+    for (int i = 0; i < len / 2; i++) \{\par
+        if (s[i] != s[len - i - 1]) \{\par
+            return false;\par
+        \}\par
+    \}\par
+    return true;\par
+\}\par
+\par
+void shiftTailToHead(char* s, int len) \{\par
+    char temp = s[len - 1];\par
+    for (int i = len - 1; i > 0; i--) \{\par
+        s[i] = s[i - 1];\par
+    \}\par
+    s[0] = temp;\par
+\}\par
+\par
+int minShiftsToPalindrome(char* s) \{\par
+    int len = strlen(s);\par
+    for (int i = 0; i < len; i++) \{\par
+        if (isPalindrome(s, len)) \{\par
+            return i;\par
+        \}\par
+        shiftTailToHead(s, len);\par
+    \}\par
+    return -1;\par
+\}\par
+\par
+int main() \{\par
+    int t;\par
+    scanf("%d", &t);\par
+    while (t--) \{\par
+        char s[10005];\par
+        scanf("%s", s);\par
+        printf("%d\\n", minShiftsToPalindrome(s));\par
+    \}\par
+    return 0;\par
+\}\par
+-------------------------------------------------------------------------------------------\par
+question-7\par
+\par
+\par
+\par
+#include <stdio.h>\par
+#include <string.h>\par
+\par
+int countVowels(const char* word) \{\par
+    int count = 0;\par
+    while (*word) \{\par
+        if (*word == 'a' || *word == 'e' || *word == 'i' || *word == 'o' || *word == 'u') \{\par
+            count++;\par
+        \}\par
+        word++;\par
+    \}\par
+    return count;\par
+\}\par
+\par
+int numberToVowels(int num) \{\par
+    switch (num) \{\par
+        case 1: return countVowels("one");\par
+        case 2: return countVowels("two");\par
+        case 3: return countVowels("three");\par
+        case 4: return countVowels("four");\par
+        case 5: return countVowels("five");\par
+        case 6: return countVowels("six");\par
+        case 7: return countVowels("seven");\par
+        case 8: return countVowels("eight");\par
+        case 9: return countVowels("nine");\par
+        case 10: return countVowels("ten");\par
+        case 11: return countVowels("eleven");\par
+        case 12: return countVowels("twelve");\par
+        case 13: return countVowels("thirteen");\par
+        case 14: return countVowels("fourteen");\par
+        case 15: return countVowels("fifteen");\par
+        case 16: return countVowels("sixteen");\par
+        case 17: return countVowels("seventeen");\par
+        case 18: return countVowels("eighteen");\par
+        case 19: return countVowels("nineteen");\par
+        case 20: return countVowels("twenty");\par
+        case 30: return countVowels("thirty");\par
+        case 40: return countVowels("forty");\par
+        case 50: return countVowels("fifty");\par
+        case 60: return countVowels("sixty");\par
+        case 70: return countVowels("seventy");\par
+        case 80: return countVowels("eighty");\par
+        case 90: return countVowels("ninety");\par
+        case 100: return countVowels("hundred");\par
+        default: \{\par
+            if (num < 100) \{\par
+                int tens = (num / 10) * 10;\par
+                int ones = num % 10;\par
+                return numberToVowels(tens) + numberToVowels(ones);\par
+            \}\par
+        \}\par
+    \}\par
+    return 0;\par
+\}\par
+\par
+void numberToWord(int num, char* word) \{\par
+    char* words[] = \{ "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",\par
+                      "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",\par
+                      "twenty", "greater 100" \};\par
+    if (num > 100) \{\par
+        strcpy(word, words[21]);\par
+    \} else \{\par
+        strcpy(word, words[num]);\par
+    \}\par
+\}\par
+\par
+int main() \{\par
+    int n, arr[100], totalVowels = 0, countPairs = 0;\par
+    scanf("%d", &n);\par
+    for (int i = 0; i < n; i++) \{\par
+        scanf("%d", &arr[i]);\par
+        totalVowels += numberToVowels(arr[i]);\par
+    \}\par
+\par
+    for (int i = 0; i < n; i++) \{\par
+        for (int j = i + 1; j < n; j++) \{\par
+            if (arr[i] + arr[j] == totalVowels) \{\par
+                countPairs++;\par
+            \}\par
+        \}\par
+    \}\par
+\par
+    char result[20];\par
+    numberToWord(countPairs, result);\par
+    printf("%s\\n", result);\par
+\par
+    return 0;\par
+\}\par
+-------------------------------------------------------------------------------------------------\par
+question-8\par
+\par
+#include <stdio.h>\par
+\par
+void sum(int coins[],int count,int N,int s,int temp,int n)\{\par
+     \par
+    \par
+    \par
+    for(int i=1;i<=N-1;i++)\par
+    \{\par
+        for(int j=1;j<N-1;j++)\par
+        \{\par
+       \par
+          s=s+coins[i];\par
+          if(s+1==N)\{\par
+            count=count+1;\par
+          \}\par
+        \}\par
+       s=0;\par
+     \par
+       for(int q=0;q<=N-1;q++)\{\par
+          temp=coins[i];\par
+          temp=temp+coins[q];\par
+          if(temp+1==N)\{\par
+             count=count+1;\par
+          \}\par
+          \par
+       \}\par
+       temp=0;\par
+       \par
+    \}\par
+    if(n==1)\{\par
+        if(coins[0]==N)\{\par
+            count++;\par
+        \}\par
+    \}\par
+  printf("%d",count);\par
+\}\par
+\par
+int main() \{\par
+    int N;\par
+    int count=0;\par
+     int s=0;\par
+     int temp=0;\par
+     int n;\par
+    \par
+    printf("Enter the value of N:");\par
+    scanf("%d",&N);\par
+    \par
+     printf("Enter the value of coins size:");\par
+    scanf("%d",&n);\par
+    \par
+      int coins[n];\par
+        for(int i=0;i<=n-1;i++)\par
+    \{\par
+        printf("Enter the value of coins :");\par
+       scanf("%d",&coins[i]);\par
+    \}\par
+      \par
+      sum(coins,count,N,s,temp,n);\par
+  \par
+    return 0;\par
+\}\par
+-----------------------------------------------------------------------------------------------------------\par
+\par
+question 9\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int N, n;\par
+\par
+    printf("Enter the value of N: ");\par
+    scanf("%d", &N);\par
+    \par
+    printf("Enter the value of coins size: ");\par
+    scanf("%d", &n);\par
+    \par
+    int coins[n];\par
+    \par
+    for(int i = 0; i < n; i++) \{\par
+        printf("Enter the value of coins: ");\par
+        scanf("%d", &coins[i]);\par
+    \}\par
+\par
+    int ways[N + 1];\par
+      \par
+    for(int i = 0; i <= N; i++) \{\par
+        ways[i] = 0;\par
+    \}\par
+    \par
+    ways[0] = 1;\par
+    for(int i = 0; i < n; i++) \{\par
+        for(int j = coins[i]; j <= N; j++) \{\par
+            ways[j] += ways[j - coins[i]];\par
+        \}\par
+    \}\par
+    \par
+    printf("Number of combinations to make %d: %d\\n", N, ways[N]);\par
+    return 0;\par
+\}\par
+--------------------------------------------------------------------------------------------------------------\par
+question-10\par
+\par
+\par
+#include <stdio.h>\par
+#include <stdlib.h>\par
+\par
+int compare(const void* a, const void* b) \{\par
+    return (*(int*)a - *(int*)b);\par
+\}\par
+\par
+int minProduct(int arr[], int n, int k) \{\par
+    qsort(arr, n, sizeof(int), compare);\par
+    int product = 1;\par
+    for (int i = 0; i < k; i++) \{\par
+        product *= arr[i];\par
+    \}\par
+    return product;\par
+\}\par
+\par
+int main() \{\par
+    int n, k;\par
+    printf("Enter the number of elements in the array: ");\par
+    scanf("%d", &n);\par
+    \par
+    int arr[n];\par
+    printf("Enter the elements: ");\par
+    for (int i = 0; i < n; i++) \{\par
+        scanf("%d", &arr[i]);\par
+    \}\par
+\par
+    printf("Enter the value of k: ");\par
+    scanf("%d", &k);\par
+\par
+    int result = minProduct(arr, n, k);\par
+    printf("The minimum product of %d integers is: %d\\n", k, result);\par
+\par
+    return 0;\par
+\}\par
+----------------------------------------------------------------------------------------------------\par
+question-11\par
+\par
+\par
+#include <stdio.h>\par
+#include <string.h>\par
+\par
+int canFormPalindrome(char* str) \{\par
+    int freq[26] = \{0\};\par
+    \par
+    for (int i = 0; str[i] != '\\0'; i++) \{\par
+        freq[str[i] - 'a']++;\par
+    \}\par
+    \par
+    int oddCount = 0;\par
+    for (int i = 0; i < 26; i++) \{\par
+        if (freq[i] % 2 != 0) \{\par
+            oddCount++;\par
+        \}\par
+    \}\par
+    \par
+    if (oddCount > 1) \{\par
+        return 0;\par
+    \}\par
+    return 1;\par
+\}\par
+\par
+int main() \{\par
+    int t;\par
+    scanf("%d", &t);\par
+    \par
+    for (int i = 0; i < t; i++) \{\par
+        char str[10001];\par
+        scanf("%s", str);\par
+        \par
+        if (canFormPalindrome(str)) \{\par
+            printf("Yes\\n");\par
+        \} else \{\par
+            printf("No\\n");\par
+        \}\par
+    \}\par
+    \par
+    return 0;\par
+\}\par
+----------------------------------------------------------------------------------------------------------\par
+question-12\par
+\par
+\par
+\par
+#include <stdio.h>\par
+#include <stdbool.h>\par
+\par
+int sumOfSquaresOfDigits(int n) \{\par
+    int sum = 0;\par
+    while (n > 0) \{\par
+        int digit = n % 10;\par
+        sum += digit * digit;\par
+        n /= 10;\par
+    \}\par
+    return sum;\par
+\}\par
+\par
+bool isHappy(int n) \{\par
+    int slow = n, fast = n;\par
+    \par
+    while (fast != 1 && sumOfSquaresOfDigits(fast) != 1) \{\par
+        slow = sumOfSquaresOfDigits(slow);\par
+        fast = sumOfSquaresOfDigits(sumOfSquaresOfDigits(fast));\par
+        \par
+        if (slow == fast) \{\par
+            return false;\par
+        \}\par
+    \}\par
+    return true;\par
+\}\par
+\par
+int main() \{\par
+    int n;\par
+    printf("Enter a number: ");\par
+    scanf("%d", &n);\par
+    \par
+    if (isHappy(n)) \{\par
+        printf("True\\n");\par
+    \} else \{\par
+        printf("False\\n");\par
+    \}\par
+    \par
+    return 0;\par
+\}\par
+---------------------------------------------------------------------\par
+}
+ 
