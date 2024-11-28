@@ -1,0 +1,458 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9\par
+\par
+\fs36 ALGO SET 1 \fs22\par
+\par
+\par
+---------------------------------------------------------------------------\par
+\par
+Find negative number in array in c++\par
+\par
+\par
+int main() \{\par
+    int n=5;\par
+    int arr[n]=\{1,2,3,-1,-2\};\par
+\par
+    int count = 0; \par
+    for(int i = 0; i<=n; i++) \{\par
+        if(arr[i] < 0) \{\par
+            count++;\par
+        \}\par
+    \}\par
+\par
+    cout << "Negative numbers in the array is : " << count << endl;\par
+\par
+    return 0;\par
+\}\par
+-------------------------------------------------------------------------------------------------------------------\par
+Max find in array in c++\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+\par
+int main() \{\par
+    int n=5;\par
+    int arr[n];\par
+    cout<<"Enter the value of arry: ";\par
+    for(int i=0;i<=n;i++)\{\par
+        cin>>arr[i];\par
+    \}\par
+    int max=0;\par
+    for(int i=0;i<=n;i++)\{\par
+        if(arr[i]>max)\{\par
+            max=arr[i];\par
+        \}\par
+    \}\par
+    cout<<"max value is:"<<max;\par
+    \par
+    return 0;\par
+\}\par
+--------------------------------------------------------------------------------------------------------------\par
+Star pattern in c\par
+\par
+*\par
+\par
+**\par
+\par
+***\par
+\par
+****\par
+\par
+*****\par
+\par
+\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int n=5;\par
+    for(int I=1;I<=n;I++)\{\par
+        for(int j=1;j<=I;j++)\{\par
+            printf("*");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+\par
+    return 0;\par
+\}\par
+-----------------------------------------------------------------------------------------------------------------\par
+Star pattern in c\par
+\par
+\par
+*****\par
+\par
+****\par
+\par
+***\par
+\par
+**\par
+\par
+*\par
+\par
+\par
+\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int n=5;\par
+    for(int I=1;I<=n;I++)\{\par
+        for(int j=1;j<=n-I+1;j++)\{\par
+            printf("*");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+\par
+    return 0;\par
+\}\par
+-------------------------------------------------------------------------------------------------------------------\par
+Star pattern in c\par
+\par
+*\par
+**\par
+***\par
+****\par
+*****\par
+*****\par
+****\par
+***\par
+**\par
+*\par
+\par
+\par
+\par
+\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int n=5;\par
+   for(int I=1;I<=n;I++)\{\par
+        for(int j=1;j<=I;j++)\{\par
+            printf("*");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+\par
+    \par
+    for(int I=1;I<=n;I++)\{\par
+        for(int j=1;j<=n-I+1;j++)\{\par
+            printf("*");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+\par
+    return 0;\par
+\}\par
+-------------------------------------------------------------------------------------------------------------------\par
+Star pattern in c\par
+\par
+        * \par
+      * * * \par
+    * * * * * \par
+  * * * * * * * \par
+* * * * * * * * * \par
+  * * * * * * * \par
+    * * * * * \par
+      * * * \par
+        * \par
+\par
+\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int n=5;\par
+\par
+    for(int i = 1; i <= n; i++) \{\par
+        for(int j = i; j < n; j++) \{\par
+            printf("  ");\par
+        \}\par
+        for(int k = 1; k <= (2*i - 1); k++) \{\par
+            printf("* ");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+    \par
+  for(int i = 1; i <= n; i++) \{\par
+       for(int j = i; j < i*2; j++) \{\par
+            printf("  ");\par
+        \}\par
+        for(int k = 1; k <= n+4-(i*2); k++) \{\par
+            printf("* ");\par
+        \}\par
+         \par
+        printf("\\n");\par
+\}\par
+\par
+\par
+    return 0;\par
+\}\par
+-------------------------------------------------------------------------------------------------------------------\par
+Star pattern in c\par
+\par
+        * \par
+      * * * \par
+    * * * * * \par
+  * * * * * * * \par
+* * * * * * * * * \par
+  * * * * * * * \par
+    * * * * * \par
+      * * * \par
+        * \par
+\par
+\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int n=5;\par
+\par
+    for(int i = 1; i <= n; i++) \{\par
+        for(int j = i; j < n; j++) \{\par
+            printf("  ");\par
+        \}\par
+        for(int k = 1; k <= (2*i - 1); k++) \{\par
+            printf("* ");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+    \par
+  for(int i = 1; i <= n; i++) \{\par
+       for(int j = i; j < i*2; j++) \{\par
+            printf("  ");\par
+        \}\par
+        for(int k = 1; k <= n+4-(i*2); k++) \{\par
+            printf("* ");\par
+        \}\par
+         \par
+        printf("\\n");\par
+\}\par
+\par
+\par
+    return 0;\par
+\}\par
+-----------------------------------------------------------------------------------------------------------\par
+Star pattern in c\par
+\par
+    *****\par
+   *****\par
+  *****\par
+ *****\par
+*****\par
+\par
+\par
+\par
+\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+    int n=5;\par
+    for(int i=1;i<=n;i++)\{\par
+        for(int j=1;j<=n-i;j++)\{\par
+            printf(" ");\par
+        \}\par
+        for(int k=1;k<=n;k++)\{\par
+            printf("*");\par
+        \}\par
+        printf("\\n");\par
+    \}\par
+    return 0;\par
+\}\par
+-----------------------------------------------------------------------------------------------------\par
+Add 2 shorted array in 3 array\par
+\par
+\par
+\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+int main() \{ \par
+    int n=5;\par
+    int arr[n]=\{1,2,3,4,5\};\par
+    int arr1[n]=\{1,2,3,4,5\};\par
+    \par
+\par
+\par
+int arr3[n];\par
+for(int i=0;i<=n;i++)\{\par
+    arr3[i]=arr[i]+arr1[i];\par
+\}\par
+\par
+for(int i=0;i<=n;i++)\{\par
+    cout<<arr3[i];\par
+\}\par
+\par
+\par
+return 0;\par
+\}\par
+------------------------------------------------------------------------------------------------------\par
+No. Pattern in c\par
+\par
+12345\par
+23455\par
+34555\par
+45555\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+int main() \{ \par
+    int n=4;\par
+    int arr[n];\par
+    \par
+for(int i=1;i<=n;i++)\{\par
+    for(int j=i;j<=n;j++)\{\par
+        printf("%d", j) \par
+    \}\par
+    for(int k=1;k<=i;k++)\{\par
+       printf("5");\par
+    \}\par
+    cout<<"\\n";\par
+\}\par
+\par
+\par
+\par
+return 0;\par
+\}\par
+------------------------------------------------------------------------------------------------\par
+Make no. Pattern in c\par
+\par
+12345\par
+54321\par
+12345\par
+54321\par
+\par
+\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+int main() \{ \par
+    int n=5;\par
+    int arr[n];\par
+    \par
+for(int i=1;i<=n;i++)\{\par
+    for(int j=1;j<=n;j++)\{\par
+        printf("%d",j);\par
+    \} \par
+ cout<<"\\n";\par
+   for(int j=1;j<=n;j++)\{\par
+        printf("%d",n-j+1);\par
+    \}\par
+  printf("\\n");\par
+\}\par
+\par
+\par
+\par
+return 0;\par
+\}\par
+---------------------------------------------------------------------------------------\par
+Find duplicate no. In array in c++\par
+\par
+#include <iostream>\par
+using namespace std;\par
+int main() \{\par
+     int arr[5]=\{1,2,3,3,1\};\par
+     \par
+for(int i = 0; i < 5; i++) \{    \par
+        for(int j = i + 1; j < 5; j++) \{    \par
+            if(arr[i] == arr[j])    \par
+                cout<<arr[j];    \par
+        \}    \par
+    \}    \par
+     \par
+     \par
+    return 0;\par
+\}\par
+----------------------------------------------------------------------------------------------------------------\par
+Show index no. Or array with user input in c++\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+int main() \{\par
+    int il;\par
+     int arr[5]=\{1,2,3,3,1\};\par
+     cout<<"Enter value ";\par
+     cin>>il;\par
+     \par
+for(int i = 0; i < 5; i++) \{    \par
+        if(il==arr[i])\{\par
+            cout<<"Index no. is";\par
+            cout<<i;\par
+        \}\par
+    \}    \par
+     \par
+     \par
+    return 0;\par
+\}\par
+---------------------------------------------------------------------------------------\par
+Take 7 input from user and reverser the no. And insert in array\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+int main() \{ \par
+    int n=7;\par
+     int arr[n];\par
+     int arr1[n];\par
+     \par
+for(int i = 1; i <= n; i++) \{    \par
+        cout<<"Enter value ";\par
+     cin>>arr[i];\par
+    \}  \par
+   \par
+for(int i = 0; i <= n; i++) \{    \par
+       arr1[i]=arr[n-i];\par
+       cout<<arr1[i];\par
+           \}  \par
+     \par
+    return 0;\par
+\}\par
+--------------------------------------------------------------------------------------------------------------\par
+Merge 2 array in 3 array in c++\par
+\par
+\par
+\par
+#include <iostream>\par
+using namespace std;\par
+\par
+\par
+int main() \{ \par
+    int ar[5]=\{1,3,5,7,9\};\par
+    int arr[5]=\{2,4,6,8,10\};\par
+    int arr2[9];\par
+    int i=0;\par
+    int j=0;\par
+    for(int n=0;n<=10;n++)\{\par
+        if(i<5 && j<5)\{\par
+            if(ar[i]<arr[j])\{\par
+                arr2[n]=ar[i];\par
+                i++;\par
+            \}\par
+            else\{\par
+                arr2[n]=arr[j];\par
+                j++;\par
+            \}\par
+        \}\par
+        else if(i<5)\{\par
+            arr2[n]=ar[i];\par
+          \par
+        \}else if(j<5)\{\par
+            arr2[n]=arr[j];\par
+            j++;\par
+        \}\par
+        \}\par
+    \par
+for(int s=0;s<=9;s++)\{\par
+    cout<<arr2[s];\par
+    cout<<"\\n";\par
+\}   \par
+\}\par
+----------------------------------------xx----------------------------------------\par
+}
+ 
